@@ -124,7 +124,26 @@ function update(){
 }
 function createButton() {
 
+  // Remove Whatever is in the tweeetbox div if theres somethign 
+  //there to avoid adding multiple tweetbuttons
+ $("#twtbox").empty();
+ 
+  // Create a New Tweet Element
 
+  var link = document.createElement('a');
+  link.setAttribute('href', 'https://twitter.com/share');
+  link.setAttribute('class', 'twitter-share-button');
+  link.setAttribute('style', 'margin-top:5px;');
+  link.setAttribute('id', 'twitterbutton');
+  link.setAttribute("data-text", tweettext);
+  link.setAttribute("data-size", "large");
+
+  // Put it inside the twtbox div
+  tweetdiv = document.getElementById('twtbox');
+  tweetdiv.appendChild(link);
+
+  twttr.widgets.load(); //very important
+}
 
 
 
