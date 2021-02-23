@@ -1,0 +1,210 @@
+<!-- original : https://codepen.io/SeanNorton/pen/LWBXQL -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Bebas+Neue" rel="stylesheet">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quote</title>
+
+    <style>
+
+        /*CSS RESETS*/
+body{
+  font-family: 'Sanchez', serif;
+  text-align:center;
+  width:100%;
+}
+
+h1{
+  text-shadow: 1px 1px 1px #aaa;
+  color:black;
+  font-size:3.5em;
+  font-weight:bold;
+  margin-top:20px;
+  letter-spacing:3px;
+}
+
+.quote-background{
+    height: 600px;  
+    text-align: center;
+    background: url('http://wallpapercave.com/wp/jWMHXIA.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+/**@media (max-width : 240px) {
+h1 {
+   font-size:1em;
+  font-weight:200px;
+  }
+}*/
+
+
+@media only screen and (max-width: 640px) {
+  /* Add your custom styles here for Mobile */
+  h1 {font-size:2.5px;font-weight:200px;}
+}
+@media only screen and (max-width: 480px) {
+  /* Add your custom styles here for smaller Mobile */
+  h1 {font-size:2em;font-weight:200px;}
+}
+
+.info{
+   font-size:22px;
+   font-family: serif;
+}
+
+
+
+.btn{
+  background-color: #EBE5E1;
+  text-align: center; 
+  font-size: 14px;
+  border-radius: 10px;
+  box-shadow: -5px 5px 10px rgba(100,100,100,.8);
+  letter-spacing:1px;
+    margin-bottom:20px;
+}
+.btn:hover {
+   transform:scale(1.1);
+  transition: 0.2s;
+  letter-spacing:2.2px;
+  background-color:white;
+}
+.btn:focus,.btn:active{
+  outline:0 important!;
+}
+
+    </style>
+</head>
+<body>
+    <link href="https://fonts.googleapis.com/css?family=Lobster|Roboto:400,700" rel="stylesheet">
+
+<div class="quote-background">
+  <div class="container">
+  <h1><em>Quote of The Day</em></h1>
+  <p class="info"><em>"There are some quotes that I collected in past over few years.</br>You can read the all the quotes"</em></p>
+
+<div class="well well-sm">
+  <dl>
+    <dt id="quote"></dt>
+    <dd id="author"></dd>
+  </dl>    
+</div>
+
+<button id="quotebutton" type="button" class="btn btn-default btn-md">Quote</button>
+<p>Like the quote.Tweet to your friends</p>
+<div id="twtbox" style="display:block"></div>    
+
+<script>
+    window.twttr = (function(d, s, id) {
+        var t, js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "https://platform.twitter.com/widgets.js";
+        fjs.parentNode.insertBefore(js, fjs);
+        return window.twttr || (t = {
+            _e: [],
+            ready: function(f) {
+                t._e.push(f)
+            }
+        });
+    }(document, "script", "twitter-wjs"));
+</script>
+
+</div>
+
+
+
+</br>
+<footer>
+      <p class="text-muted small">Copyright &copy; Motion Web Design Studio 2016. All Rights Reserved</p>
+</footer>
+
+</div>
+
+<script>
+    var prev=0;
+
+
+$("#quotebutton").on("click", update);
+  $("dl").css("fontSize", "16px");
+ $("dt").css("fontSize", "19px");
+
+function update(){
+  change();
+ createButton(); 
+}
+function createButton() {
+
+  // Remove Whatever is in the tweeetbox div if theres somethign 
+  //there to avoid adding multiple tweetbuttons
+ $("#twtbox").empty();
+ 
+  // Create a New Tweet Element
+
+  var link = document.createElement('a');
+  link.setAttribute('href', 'https://twitter.com/share');
+  link.setAttribute('class', 'twitter-share-button');
+  link.setAttribute('style', 'margin-top:5px;');
+  link.setAttribute('id', 'twitterbutton');
+  link.setAttribute("data-text", tweettext);
+  link.setAttribute("data-size", "large");
+
+  // Put it inside the twtbox div
+  tweetdiv = document.getElementById('twtbox');
+  tweetdiv.appendChild(link);
+
+  twttr.widgets.load(); //very important
+}
+
+
+
+function change() {
+  var quotes = ["Don't cry because it's over, smile because it happened@Dr. Seuss", "In the end, it's not the years in your life that count. It's the life in your years.@Abraham Lincoln", "Two things are infinite: the universe and human stupidity; and I'm not sure about the universe.@Albert Einstein", "Be who you are and say what you feel, because those who mind don't matter, and those who matter don't mind.@Bernard M. Baruch", "A room without books is like a body without a soul.@Marcus Tullius Cicero", "So many books, so little time.” @Frank Zappa", "Be the change that you wish to see in the world.@Mahatma Gandhi", "If you tell the truth, you don't have to remember anything.@Mark Twain"];
+var num=Math.floor(Math.random() * quotes.length);
+  while(num==prev){
+    num=Math.floor(Math.random() * quotes.length);
+  }
+  prev=num;
+  var quotedisplay = quotes[num].split("@");
+  //console.log(quotedisplay[0]);
+  //console.log(quotedisplay[1]);
+
+  tweettext = quotedisplay[0] + " --"+ quotedisplay[1] ;
+  document.getElementById('quote').innerHTML =quotedisplay[0];
+  document.getElementById('author').innerHTML = "--" + quotedisplay[1];
+
+}
+
+$(document).ready(function() {
+
+  var tweettext = "";
+
+  change();
+  createButton();
+
+  $("dt").css("fontSize", "19px");
+  $("dl").css("fontSize", "16px");
+
+  /**Be who you are and say what you feel, because those who mind don't matter, and those who matter don't mind.@Bernard M. Baruch
+  A room without books is like a body without a soul.@Marcus Tullius Cicero
+  So many books, so little time.” @Frank Zappa
+  Be the change that you wish to see in the world.@Mahatma Gandhi
+  If you tell the truth, you don't have to remember anything.@Mark Twain
+  Always forgive your enemies; nothing annoys them so much. @Oscar Wilde
+  Live as if you were to die tomorrow. Learn as if you were to live forever.@Mahatma Gandhi
+  Don't think or judge, just listen.@Sarah Dessen
+  One day, in retrospect, the years of struggle will strike you as the most beautiful.@Sigmund Freud
+  Don't be afraid of your fears. They're not there to scare you. They're there to let you know that something is worth it.@C JoyBell C
+  For great men, religion is a way of making friends; small people make religion a fighting tool.@A.P.J. Abdul Kalam
+  Dreams are not those which comes while we are sleeping, but dreams are those when u don't sleep before fulfilling them.@A.P.J. Abdul Kalam
+  **/
+});
+// END
+</script>
+
+</body>
+</html>
