@@ -31,11 +31,12 @@ body {
 	padding: 10px 25px 10px 25px;
     color: #fff;
     display: flex;
-    flex-direction: row;
-    align-items: center;
+    flex-direction: column;
+    align-items: first baseline;
     justify-content: center;
     flex-wrap: wrap;
 	min-height: 300px;
+	max-height:500px;
 }
 
 .card:hover {
@@ -46,7 +47,10 @@ body {
     font-family: 'Special Elite', cursive;
     font-size: 2rem;
 }
-
+#clock-date {
+	display: flex;
+	flex-wrap: wrap;
+}
 .date {
     min-width: 162px;
     
@@ -64,8 +68,11 @@ body {
         font-size: 1.1em;
         display: inline-block;
     }
+#separator {
+	padding: 10px 0;
+}
 #text2 {
-	align-self: flex-end;
+	
 	}
 
 .text, .date, .clock {
@@ -85,14 +92,17 @@ body {
    
     <div class="card">
         <div class="text" id="text"></div>
-      <div class="date" id="date"></div>
-      <div class="clock">
-        <div class="time" id="hour"></div>
-        <div class="colon">:</div>
-        <div class="time" id="min"></div>
-        <div class="colon">:</div>
-        <div class="time" id="sec"></div>
-      </div>
+		<div id="clock-date">
+			  <div class="date" id="date"></div>
+			  <div class="clock" id="separator">/</div>
+			  <div class="clock">
+				<div class="time" id="hour"></div>
+				<div class="colon">:</div>
+				<div class="time" id="min"></div>
+				<div class="colon">:</div>
+				<div class="time" id="sec"></div>
+			  </div>
+	  </div>
 	  <div class="text" id="text2">Where will your writing take you today?</div>
     </div>
    
