@@ -32,18 +32,6 @@ h1 {
 
 /*CSS START*/
 
-.full-table {
-    display: table;
-    height: 100%;
-    width: 100%;
-}
-
-.table-cell {
-    display: table-cell;
-    vertical-align: middle;
-    text-align: center;
-}
-
 .card {
     padding: 10px 25px 10px 25px;
     border-radius: 10px;
@@ -51,8 +39,8 @@ h1 {
     /* box-shadow: 2px 2px 1px 0px #330835; */
     display: flex;
     flex-direction: row;
-  align-items: center;
-  justify-content: center;
+    align-items: center;
+    justify-content: center;
     flex-wrap: wrap;
 }
 
@@ -60,40 +48,37 @@ h1 {
     margin-top: 2px;
     box-shadow: none;
 }
+.text {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+     padding-right: 30px;
+}
 
+.date {
+     min-width: 162px;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 2em;
+    padding-right: 30px;
+}    
 .clock {
     display: inline;
     font-family: 'Bebas Neue', cursive;
     font-size: 2em;
    
 }
+    .time {
+        display: inline;
+        min-width: 37px;
+    }
 
-.time {
-    display: inline;
-    min-width: 37px;
-}
+    .colon {
+        font-size: 1.1em;
+        display: inline-block;
+    }
 
-.colon {
-    font-size: 1.1em;
-    display: inline-block;
-}
+.text
 
 
-
-.date {
-    /*display:inline;*/
-    min-width: 162px;
-    font-family: 'Bebas Neue', cursive;
-    font-size: 2em;
-    padding-right: 30px;
-}
-.greet{
-    
-    /*display:inline;*/
-    font-family: 'Dancing Script', cursive;
-    font-size: 2rem;
-     padding-right: 30px;
-}
 
     </style>
 </head>
@@ -102,7 +87,7 @@ h1 {
 
    
     <div class="card">
-        <div class="greet" id="greet"></div>
+        <div class="text" id="text"></div>
       <div class="date" id="date"></div>
       <div class="clock">
         <div class="time" id="hour"></div>
@@ -134,13 +119,13 @@ else{
 }
 hrs = today.getHours();
 if (hrs < 12)
-        greet = 'Good Morning  ';
+        text = 'Good Morning  ';
     else if (hrs >= 12 && hrs <= 17)
-        greet = 'GOOD Afternoon ';
+        text = 'GOOD Afternoon ';
     else if (hrs >= 17 && hrs <= 24)
-        greet = 'Good Evening  ';
+        text = 'Good Evening  ';
 // console.log(today.toLocaleTimeString());
-document.getElementById('greet').innerHTML = greet;
+document.getElementById('text').innerHTML = text;
 document.getElementById('hour').innerHTML = hour;
 document.getElementById('min').innerHTML = minutes;
 document.getElementById('sec').innerHTML = seconds;
